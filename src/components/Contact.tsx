@@ -73,14 +73,14 @@ const Contact = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-black leading-tight mb-4 text-white">
             Let's{" "}
-            <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]">
+            <span className="bg-linear-to-r from-purple-400 via-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]">
               Work Together
             </span>
           </h2>
           <p className="text-slate-500 text-base max-w-lg mx-auto leading-relaxed">
             Have a project idea or need help with your website? I'd love to hear about it. Let's build something great.
           </p>
-          <div className="mt-6 mx-auto w-20 h-[2px] rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
+          <div className="mt-6 mx-auto w-20 h-0.5 rounded-full bg-linear-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
         </div>
 
         {/* ── Main layout: left pitch + right actions ── */}
@@ -93,7 +93,7 @@ const Contact = () => {
           >
             {/* Top accent */}
             <div
-              className="absolute inset-x-0 top-0 h-[2px]"
+              className="absolute inset-x-0 top-0 h-0.5"
               style={{ background: "linear-gradient(90deg,transparent,rgba(168,85,247,0.7),transparent)" }}
             />
             {/* Radial glow */}
@@ -111,7 +111,7 @@ const Contact = () => {
 
               <h3 className="text-2xl font-black text-white mb-4 leading-snug">
                 Ready to bring your<br />
-                <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-purple-400 via-purple-500 to-indigo-400 bg-clip-text text-transparent">
                   vision to life?
                 </span>
               </h3>
@@ -130,7 +130,8 @@ const Contact = () => {
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-[0.88rem] text-slate-400">
                     <span
-                      className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                      className="w-5 h-5 rounded-full flex items-center justify-center
+                      shrink-0"
                       style={{ background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.3)" }}
                     >
                       <svg viewBox="0 0 12 12" fill="none" className="w-3 h-3 text-purple-400" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -172,7 +173,7 @@ const Contact = () => {
                 style={{ background: "radial-gradient(ellipse at left,rgba(74,222,128,0.1) 0%,transparent 60%)" }} />
 
               {/* WhatsApp icon */}
-              <div className="relative z-10 w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0
+              <div className="relative z-10 w-14 h-14 rounded-xl flex items-center justify-center shrink-0
                 bg-green-500/15 border border-green-500/30
                 group-hover:bg-green-500/25 group-hover:border-green-400/50
                 group-hover:shadow-[0_0_20px_rgba(74,222,128,0.25)]
@@ -188,7 +189,7 @@ const Contact = () => {
               </div>
 
               {/* Arrow */}
-              <svg viewBox="0 0 16 16" fill="none" className="relative z-10 w-4 h-4 text-green-400 flex-shrink-0 transition-transform duration-200 group-hover:translate-x-1" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <svg viewBox="0 0 16 16" fill="none" className="relative z-10 w-4 h-4 text-green-400 shrink-0 transition-transform duration-200 group-hover:translate-x-1" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 8h10M9 4l4 4-4 4" />
               </svg>
             </a>
@@ -208,7 +209,7 @@ const Contact = () => {
                   style={{ background: `linear-gradient(135deg, ${link.color.replace("from-", "").split(" ")[0].replace("/20", "")} 0%, transparent 60%)` }} />
 
                 {/* Icon bubble */}
-                <div className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0
+                <div className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0
                   bg-white/5 border border-white/10 ${link.textColor}
                   group-hover:bg-white/10 transition-all duration-300`}>
                   {link.icon}
@@ -219,7 +220,7 @@ const Contact = () => {
                   <span className="text-[0.88rem] font-semibold text-white truncate">{link.value}</span>
                 </div>
 
-                <svg viewBox="0 0 16 16" fill="none" className={`relative z-10 w-4 h-4 ${link.textColor} flex-shrink-0 transition-transform duration-200 group-hover:translate-x-1`} stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                <svg viewBox="0 0 16 16" fill="none" className={`relative z-10 w-4 h-4 ${link.textColor} shrink-0 transition-transform duration-200 group-hover:translate-x-1`} stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M3 8h10M9 4l4 4-4 4" />
                 </svg>
               </a>
@@ -230,7 +231,7 @@ const Contact = () => {
               className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-purple-500/15"
               style={{ background: "rgba(255,255,255,0.015)", backdropFilter: "blur(8px)" }}
             >
-              <div className="flex gap-1 flex-shrink-0">
+              <div className="flex gap-1 shrink-0">
                 {["bg-red-400", "bg-yellow-400", "bg-green-400"].map((c) => (
                   <span key={c} className={`w-2.5 h-2.5 rounded-full ${c} opacity-80`} />
                 ))}

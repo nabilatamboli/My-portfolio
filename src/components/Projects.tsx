@@ -117,7 +117,7 @@ const VideoModal = ({
   onClose: () => void;
 }) => (
   <div
-    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm"
+    className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm"
     onClick={onClose}
   >
     <div
@@ -187,7 +187,7 @@ const PreviewPane = ({
   onPlay: () => void;
 }) => (
   <div
-    className={`relative w-full h-full min-h-[190px] lg:min-h-0 rounded-xl overflow-hidden
+    className={`relative w-full h-full min-h-190px lg:min-h-0 rounded-xl overflow-hidden
       bg-linear-to-br ${project.previewBg} border border-purple-500/20
       flex items-center justify-center group/preview
       ${project.type !== "live" ? "cursor-pointer" : ""}`}
@@ -264,7 +264,7 @@ const Projects = () => {
 
       <section
         id="projects"
-        className="relative w-full py-24 overflow-hidden"
+        className="relative w-full py-18 overflow-hidden"
         style={{ background: "linear-gradient(135deg,#07070F 0%,#0F0B1E 40%,#150D2E 70%,#1A0B33 100%)" }}
       >
         {/* Blobs */}
@@ -285,14 +285,14 @@ const Projects = () => {
             </div>
             <h2 className="text-4xl md:text-5xl font-black leading-tight mb-4 text-white">
               My{" "}
-              <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]">
+              <span className="bg-linear-to-r from-purple-400 via-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]">
                 Work
               </span>
             </h2>
             <p className="text-slate-500 text-base max-w-xl mx-auto leading-relaxed">
               A selection of my work — from web apps and client sites to creative ad videos.
             </p>
-            <div className="mt-6 mx-auto w-20 h-[2px] rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
+            <div className="mt-6 mx-auto w-20 h-0.5 rounded-full bg-linear-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
           </div>
 
           {/* Showcase rows */}
@@ -303,19 +303,19 @@ const Projects = () => {
                 <div
                   key={index}
                   className="group relative flex flex-col lg:flex-row rounded-2xl border border-purple-500/15
-                    bg-white/[0.025] backdrop-blur-sm overflow-hidden
-                    hover:border-purple-500/35 hover:bg-white/[0.04]
+                    bg-white/2.5 backdrop-blur-sm overflow-hidden
+                    hover:border-purple-500/35 hover:bg-white/4
                     hover:shadow-[0_0_50px_rgba(168,85,247,0.1)]
                     transition-all duration-500"
                 >
                   {/* Accent bar */}
                   <div
-                    className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-x-0 top-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{ background: "linear-gradient(90deg,transparent,rgba(168,85,247,0.7),transparent)" }}
                   />
 
                   {/* Preview pane */}
-                  <div className={`w-full lg:w-[36%] flex-shrink-0 p-4 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
+                  <div className={`w-full lg:w-[36%] shrink-0 p-4 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
                     <PreviewPane project={project} onPlay={() => setModal(project)} />
                   </div>
 
@@ -368,7 +368,7 @@ const Projects = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 w-fit px-5 py-2.5 rounded-xl
                           text-[0.88rem] font-semibold text-white
-                          bg-gradient-to-br from-purple-600 to-violet-700
+                          bg-linear-to-br from-purple-600 to-violet-700
                           shadow-[0_0_16px_rgba(147,51,234,0.3)]
                           hover:shadow-[0_0_28px_rgba(168,85,247,0.55)]
                           hover:-translate-y-0.5 transition-all duration-200"

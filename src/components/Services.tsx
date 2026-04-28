@@ -134,7 +134,7 @@ const Services = () => {
 
           <h2 className="text-4xl md:text-5xl font-black leading-tight mb-4 text-white">
             My{" "}
-            <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]">
+            <span className="bg-linear-to-r from-purple-400 via-purple-500 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]">
               Services
             </span>
           </h2>
@@ -144,7 +144,7 @@ const Services = () => {
             and create digital solutions that drive results.
           </p>
 
-          <div className="mt-4 mx-auto w-20 h-[2px] rounded-full bg-gradient-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
+          <div className="mt-4 mx-auto w-20 h-0.5 rounded-full bg-linear-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
         </div>
 
         {/* ── Bento Grid ── */}
@@ -183,7 +183,7 @@ const Services = () => {
             href="#contact"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl
               text-[0.9rem] font-semibold text-white
-              bg-gradient-to-br from-purple-600 to-violet-700
+              bg-linear-to-br from-purple-600 to-violet-700
               shadow-[0_0_20px_rgba(147,51,234,0.35)]
               hover:shadow-[0_0_32px_rgba(168,85,247,0.55)]
               hover:-translate-y-0.5 hover:scale-[1.02]
@@ -210,8 +210,8 @@ const BentoCard = ({
 }) => (
   <div
     className={`group relative flex flex-col rounded-2xl border border-purple-500/15
-      bg-white/[0.03] backdrop-blur-sm overflow-hidden
-      hover:border-purple-500/40 hover:bg-white/[0.055]
+      bg-white/3 backdrop-blur-sm overflow-hidden
+      hover:border-purple-500/40 hover:bg-white/4
       hover:shadow-[0_0_40px_rgba(168,85,247,0.12)]
       transition-all duration-300
       ${large ? "p-7 lg:p-8" : "p-6"}
@@ -219,7 +219,7 @@ const BentoCard = ({
   >
     {/* Top gradient accent bar */}
     <div
-      className="absolute inset-x-0 top-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      className="absolute inset-x-0 top-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       style={{
         background:
           "linear-gradient(90deg,transparent,rgba(168,85,247,0.7),transparent)",
@@ -239,7 +239,7 @@ const BentoCard = ({
       className={`relative z-10 flex items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/10 text-purple-400
         group-hover:bg-purple-500/18 group-hover:border-purple-500/40
         group-hover:text-purple-300 group-hover:shadow-[0_0_18px_rgba(168,85,247,0.2)]
-        transition-all duration-300 mb-5 flex-shrink-0
+        transition-all duration-300 mb-5 shrink-0
         ${large ? "w-14 h-14" : "w-12 h-12"}`}
     >
       {service.icon}

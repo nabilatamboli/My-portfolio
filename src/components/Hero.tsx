@@ -206,41 +206,29 @@ const Hero = () => {
               }}
             >
               {/* Primary */}
-              <button
+              <a
+                href="#projects"
                 className="btn-shimmer relative overflow-hidden px-7 py-3 rounded-xl font-semibold text-white text-[0.95rem] border-none cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.03]"
                 style={{
                   background:"linear-gradient(135deg,#9333ea,#7c3aed)",
                   boxShadow:"0 0 22px rgba(147,51,234,0.42), 0 4px 20px rgba(0,0,0,0.35)",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 0 34px rgba(168,85,247,0.62), 0 8px 32px rgba(0,0,0,0.4)")}
-                onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 0 22px rgba(147,51,234,0.42), 0 4px 20px rgba(0,0,0,0.35)")}
               >
                 View Projects
-              </button>
+              </a>
 
               {/* Outline */}
-              <button
+              <a
+                href="#contact" 
                 className="px-7 py-3 rounded-xl font-semibold text-[0.95rem] cursor-pointer transition-all duration-200 hover:-translate-y-0.5 backdrop-blur-sm"
                 style={{
                   color:"#c084fc",
                   background:"rgba(139,92,246,0.07)",
                   border:"1px solid rgba(168,85,247,0.4)",
                 }}
-                onMouseEnter={e => {
-                  const b = e.currentTarget as HTMLButtonElement;
-                  b.style.background = "rgba(139,92,246,0.16)";
-                  b.style.borderColor = "rgba(168,85,247,0.7)";
-                  b.style.boxShadow = "0 0 18px rgba(168,85,247,0.22)";
-                }}
-                onMouseLeave={e => {
-                  const b = e.currentTarget as HTMLButtonElement;
-                  b.style.background = "rgba(139,92,246,0.07)";
-                  b.style.borderColor = "rgba(168,85,247,0.4)";
-                  b.style.boxShadow = "none";
-                }}
               >
                 Contact Me
-              </button>
+              </a>
             </div>
 
             {/* Stats */}
@@ -321,20 +309,7 @@ const Hero = () => {
                 }}
               >
                 ✦ Open to work
-              </div>
-
-              {/* Badge: bottom-left */}
-              <div
-                className="animate-floatBadgeB absolute -bottom-4 -left-4 flex items-center gap-1.5 px-3 py-2 rounded-xl text-[0.72rem] font-bold backdrop-blur-md"
-                style={{
-                  background:"rgba(10,8,24,0.9)",
-                  border:"1px solid rgba(99,102,241,0.4)",
-                  color:"#818cf8",
-                  boxShadow:"0 0 14px rgba(99,102,241,0.2)",
-                }}
-              >
-                <span className="text-sm">⚡</span> React · TypeScript
-              </div>
+              </div>         
 
             </div>
           </div>
