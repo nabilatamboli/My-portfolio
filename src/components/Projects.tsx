@@ -45,7 +45,9 @@ const projects: Project[] = [
     tech: ["React", "TypeScript"],
     link: "https://westernflex.com/",
     type: "live",
-    highlight: "Real Client Work",
+    // FIXED: was "Real Client Work" — contradicted the Internship framing
+    // used in Hero.tsx. Same project needs the same story everywhere.
+    highlight: "Internship Project",
     number: "02",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
@@ -117,14 +119,15 @@ const VideoModal = ({
   onClose: () => void;
 }) => (
   <div
-    className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm"
+    // FIXED: z-100 isn't in Tailwind's default z-index scale (which stops
+    // at z-50) and needs bracket syntax to actually apply.
+    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm"
     onClick={onClose}
   >
     <div
       className="relative w-full max-w-3xl rounded-2xl overflow-hidden border border-purple-500/30 shadow-[0_0_80px_rgba(168,85,247,0.3)]"
       onClick={(e) => e.stopPropagation()}
     >
-      {/* Modal header */}
       <div
         className="flex items-center justify-between px-5 py-3 border-b border-purple-500/20"
         style={{ background: "rgba(9,7,20,0.98)" }}
@@ -145,7 +148,6 @@ const VideoModal = ({
         </button>
       </div>
 
-      {/* Video player */}
       <div className="aspect-video w-full bg-black">
         {project.videoSrc ? (
           <video
@@ -156,7 +158,6 @@ const VideoModal = ({
             playsInline
           />
         ) : (
-          /* No video yet — coming soon */
           <div
             className="w-full h-full flex flex-col items-center justify-center gap-4"
             style={{ background: "linear-gradient(135deg,#0F0B1E,#150D2E)" }}
@@ -187,13 +188,15 @@ const PreviewPane = ({
   onPlay: () => void;
 }) => (
   <div
-    className={`relative w-full h-full min-h-190px lg:min-h-0 rounded-xl overflow-hidden
+    // FIXED: min-h-190px was never valid Tailwind syntax (raw px unit
+    // glued onto a class name always needs bracket syntax) and was
+    // silently producing zero CSS.
+    className={`relative w-full h-full min-h-[190px] lg:min-h-0 rounded-xl overflow-hidden
       bg-linear-to-br ${project.previewBg} border border-purple-500/20
       flex items-center justify-center group/preview
       ${project.type !== "live" ? "cursor-pointer" : ""}`}
     onClick={project.type !== "live" ? onPlay : undefined}
   >
-    {/* Grid overlay */}
     <div
       className="absolute inset-0 opacity-20"
       style={{
@@ -203,7 +206,6 @@ const PreviewPane = ({
       }}
     />
 
-    {/* Number watermark */}
     <span
       className="absolute bottom-2 right-3 font-black text-purple-500/20 select-none pointer-events-none"
       style={{ fontSize: "4.5rem", lineHeight: 1 }}
@@ -211,7 +213,6 @@ const PreviewPane = ({
       {project.number}
     </span>
 
-    {/* Center content */}
     <div className="relative z-10 flex flex-col items-center gap-3">
       <div
         className="w-14 h-14 rounded-2xl bg-white/5 border border-purple-500/30 flex items-center justify-center text-purple-300
@@ -267,7 +268,6 @@ const Projects = () => {
         className="relative w-full py-18 overflow-hidden"
         style={{ background: "linear-gradient(135deg,#07070F 0%,#0F0B1E 40%,#150D2E 70%,#1A0B33 100%)" }}
       >
-        {/* Blobs */}
         <div className="pointer-events-none absolute -top-[20%] -left-[10%] w-[45vw] h-[45vw] rounded-full"
           style={{ background: "radial-gradient(circle,rgba(139,92,246,0.14) 0%,transparent 70%)", filter: "blur(80px)" }} />
         <div className="pointer-events-none absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full"
@@ -277,7 +277,6 @@ const Projects = () => {
 
         <div className="relative z-10 w-full px-8 sm:px-12 md:px-16 lg:px-20 xl:px-28">
 
-          {/* Heading */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/8 backdrop-blur-sm text-[0.7rem] font-bold tracking-[0.12em] uppercase text-purple-400">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_6px_#a855f7]" />
@@ -295,7 +294,6 @@ const Projects = () => {
             <div className="mt-6 mx-auto w-20 h-0.5 rounded-full bg-linear-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
           </div>
 
-          {/* Showcase rows */}
           <div className="flex flex-col gap-5">
             {projects.map((project, index) => {
               const isEven = index % 2 === 0;
@@ -308,21 +306,17 @@ const Projects = () => {
                     hover:shadow-[0_0_50px_rgba(168,85,247,0.1)]
                     transition-all duration-500"
                 >
-                  {/* Accent bar */}
                   <div
                     className="absolute inset-x-0 top-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{ background: "linear-gradient(90deg,transparent,rgba(168,85,247,0.7),transparent)" }}
                   />
 
-                  {/* Preview pane */}
                   <div className={`w-full lg:w-[36%] shrink-0 p-4 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
                     <PreviewPane project={project} onPlay={() => setModal(project)} />
                   </div>
 
-                  {/* Text */}
                   <div className={`flex flex-col justify-center flex-1 px-6 py-6 lg:px-8 lg:py-8 ${isEven ? "lg:order-2" : "lg:order-1"}`}>
 
-                    {/* Number + badge */}
                     <div className="flex items-center gap-3 mb-4">
                       <span className="text-[0.72rem] font-black text-purple-500/45 tracking-widest">
                         {project.number}
@@ -333,19 +327,16 @@ const Projects = () => {
                       </span>
                     </div>
 
-                    {/* Title */}
                     <h3 className="text-2xl lg:text-3xl font-black text-white mb-3 leading-tight
                       group-hover:text-purple-200 transition-colors duration-300">
                       {project.title}
                     </h3>
 
-                    {/* Description */}
                     <p className="text-slate-500 text-[0.92rem] leading-relaxed mb-5
                       group-hover:text-slate-400 transition-colors duration-300">
                       {project.description}
                     </p>
 
-                    {/* Tech tags */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tech.map((tech, i) => (
                         <span
@@ -360,7 +351,6 @@ const Projects = () => {
                       ))}
                     </div>
 
-                    {/* CTA */}
                     {project.type === "live" ? (
                       <a
                         href={project.link}

@@ -14,7 +14,12 @@ const contactLinks = [
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
       </svg>
     ),
-    color: "from-blue-600/20 to-indigo-600/10",
+    // FIXED: previously tried to derive a CSS color by string-parsing a
+    // Tailwind class name (e.g. "from-blue-600/20") — that produces
+    // "blue-600", which isn't valid CSS and silently fails. Using a real
+    // rgba value directly, matching the pattern already used correctly
+    // elsewhere in the codebase (Services.tsx's `glow` field).
+    glow: "rgba(37,99,235,0.15)",
     border: "border-blue-500/25",
     hoverBorder: "hover:border-blue-400/50",
     hoverGlow: "hover:shadow-[0_0_24px_rgba(99,102,241,0.2)]",
@@ -30,7 +35,7 @@ const contactLinks = [
         <path d="M2 7l10 7 10-7" />
       </svg>
     ),
-    color: "from-purple-600/20 to-violet-600/10",
+    glow: "rgba(147,51,234,0.15)",
     border: "border-purple-500/25",
     hoverBorder: "hover:border-purple-400/50",
     hoverGlow: "hover:shadow-[0_0_24px_rgba(168,85,247,0.2)]",
@@ -48,7 +53,6 @@ const Contact = () => {
           "linear-gradient(135deg,#07070F 0%,#0F0B1E 40%,#150D2E 70%,#1A0B33 100%)",
       }}
     >
-      {/* Blobs */}
       <div
         className="pointer-events-none absolute top-[-15%] left-[-5%] w-[45vw] h-[45vw] rounded-full"
         style={{ background: "radial-gradient(circle,rgba(139,92,246,0.16) 0%,transparent 70%)", filter: "blur(80px)" }}
@@ -57,7 +61,6 @@ const Contact = () => {
         className="pointer-events-none absolute bottom-[-15%] right-[-5%] w-[45vw] h-[45vw] rounded-full"
         style={{ background: "radial-gradient(circle,rgba(168,85,247,0.2) 0%,rgba(99,102,241,0.08) 40%,transparent 70%)", filter: "blur(90px)" }}
       />
-      {/* Noise */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`, backgroundSize: "180px" }}
@@ -65,7 +68,6 @@ const Contact = () => {
 
       <div className="relative z-10 w-full px-8 sm:px-12 md:px-16 lg:px-20 xl:px-28">
 
-        {/* ── Heading ── */}
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/8 backdrop-blur-sm text-[0.7rem] font-bold tracking-[0.12em] uppercase text-purple-400">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_6px_#a855f7]" />
@@ -83,27 +85,22 @@ const Contact = () => {
           <div className="mt-6 mx-auto w-20 h-0.5 rounded-full bg-linear-to-r from-purple-500 to-indigo-400 shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
         </div>
 
-        {/* ── Main layout: left pitch + right actions ── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
-          {/* ── LEFT: Value pitch card ── */}
           <div
             className="relative flex flex-col justify-between rounded-2xl border border-purple-500/20 overflow-hidden p-8"
             style={{ background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)" }}
           >
-            {/* Top accent */}
             <div
               className="absolute inset-x-0 top-0 h-0.5"
               style={{ background: "linear-gradient(90deg,transparent,rgba(168,85,247,0.7),transparent)" }}
             />
-            {/* Radial glow */}
             <div
               className="pointer-events-none absolute inset-0 rounded-2xl"
               style={{ background: "radial-gradient(ellipse at top left,rgba(139,92,246,0.1) 0%,transparent 60%)" }}
             />
 
             <div className="relative z-10">
-              {/* Open badge */}
               <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-green-500/30 bg-green-500/8 text-[0.7rem] font-bold tracking-wide uppercase text-green-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_6px_rgba(74,222,128,0.8)]" />
                 Open for projects
@@ -120,7 +117,6 @@ const Contact = () => {
                 Whether you need a brand new website, a redesign, a custom business tool, or an engaging ad video — I've got you covered with clean code and creative execution.
               </p>
 
-              {/* What I can help with */}
               <ul className="flex flex-col gap-2">
                 {[
                   "Website Development & UI/UX",
@@ -130,8 +126,7 @@ const Contact = () => {
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-[0.88rem] text-slate-400">
                     <span
-                      className="w-5 h-5 rounded-full flex items-center justify-center
-                      shrink-0"
+                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
                       style={{ background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.3)" }}
                     >
                       <svg viewBox="0 0 12 12" fill="none" className="w-3 h-3 text-purple-400" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -144,7 +139,6 @@ const Contact = () => {
               </ul>
             </div>
 
-            {/* Typical response */}
             <div className="relative z-10 mt-6 flex items-center gap-3 pt-6 border-t border-purple-500/15">
               <div className="w-9 h-9 rounded-full bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-sm">
                 ⚡
@@ -155,10 +149,8 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* ── RIGHT: Action buttons ── */}
           <div className="flex flex-col gap-4">
 
-            {/* WhatsApp — primary CTA */}
             <a
               href={WHATSAPP_URL}
               target="_blank"
@@ -168,11 +160,9 @@ const Contact = () => {
                 hover:-translate-y-0.5 transition-all duration-300"
               style={{ background: "rgba(74,222,128,0.05)", backdropFilter: "blur(12px)" }}
             >
-              {/* Radial glow on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
                 style={{ background: "radial-gradient(ellipse at left,rgba(74,222,128,0.1) 0%,transparent 60%)" }} />
 
-              {/* WhatsApp icon */}
               <div className="relative z-10 w-14 h-14 rounded-xl flex items-center justify-center shrink-0
                 bg-green-500/15 border border-green-500/30
                 group-hover:bg-green-500/25 group-hover:border-green-400/50
@@ -188,13 +178,11 @@ const Contact = () => {
                 <span className="text-[0.8rem] text-slate-500">Message sent automatically when you click</span>
               </div>
 
-              {/* Arrow */}
               <svg viewBox="0 0 16 16" fill="none" className="relative z-10 w-4 h-4 text-green-400 shrink-0 transition-transform duration-200 group-hover:translate-x-1" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 8h10M9 4l4 4-4 4" />
               </svg>
             </a>
 
-            {/* Email + LinkedIn */}
             {contactLinks.map((link) => (
               <a
                 key={link.label}
@@ -205,10 +193,10 @@ const Contact = () => {
                   hover:-translate-y-0.5 transition-all duration-300 overflow-hidden`}
                 style={{ background: "rgba(255,255,255,0.025)", backdropFilter: "blur(12px)" }}
               >
+                {/* FIXED: real rgba glow value instead of parsed class-name string */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
-                  style={{ background: `linear-gradient(135deg, ${link.color.replace("from-", "").split(" ")[0].replace("/20", "")} 0%, transparent 60%)` }} />
+                  style={{ background: `radial-gradient(ellipse at top left, ${link.glow} 0%, transparent 60%)` }} />
 
-                {/* Icon bubble */}
                 <div className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0
                   bg-white/5 border border-white/10 ${link.textColor}
                   group-hover:bg-white/10 transition-all duration-300`}>
@@ -226,7 +214,6 @@ const Contact = () => {
               </a>
             ))}
 
-            {/* Availability note */}
             <div
               className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-purple-500/15"
               style={{ background: "rgba(255,255,255,0.015)", backdropFilter: "blur(8px)" }}

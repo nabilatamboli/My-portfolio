@@ -4,8 +4,9 @@ import Projects from "../components/Projects";
 import Services from "../components/Services";
 import Contact from "../components/Contact";
 
-/*
+
 import Skills from "../components/Skills";
+/*
 import Creative from "../components/Creative";
 */
 
@@ -16,8 +17,8 @@ const Home = () => {
       <Hero />
       <Projects />
       <Services />
-      {/*<Skills />
-      <Creative />*/}
+      <Skills />
+     {/* <Creative />*/}
       <Contact />
     </div>
   );
